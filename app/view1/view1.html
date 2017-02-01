@@ -4,7 +4,13 @@
 
 <form>
     <label>Course Name: </label><input type="text" placeholder="MATH1000" ng-model="course_name"/>
-    <button type="submit" name="action" ng-click="addCourse()">Submit</button>
+    <label>Course Times:</label>
+    <ul>
+        <li ng-repeat="class in classes">
+            <input>
+        </li>
+    </ul>
+    <button type="submit" name="action" ng-click="addCourse()">Save Course</button>
 
 </form>
 
