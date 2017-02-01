@@ -1,3 +1,18 @@
-<p>View 1 should be the data ingest page: A form to add classes manually (one course at a time: course name then any
-   number of classes, with any number of choices for each class) and hopefully a button to ingest classes by course code
-   from the UON website</p>
+<p> View 1 should be the data ingest page: A form to add classes manually (one course at a time: course name then any
+    number of classes, with any number of choices for each class) and hopefully a button to ingest classes by course code
+    from the UON website</p>
+
+<form>
+    <label>Course Name: </label><input type="text" placeholder="MATH1000" ng-model="course_name"/>
+    <button type="submit" name="action" ng-click="addCourse()">Submit</button>
+
+</form>
+
+
+<div>
+    <ul>
+        <li ng-repeat="course in courses">
+            {{course.name}}
+        </li>
+    </ul>
+</div>
