@@ -34,8 +34,7 @@ angular.module('myApp.view1', ['ngRoute'])
   $scope.add_option_to_class = function(clss) {
       clss.options.push({
           day: clss.new_day,
-          hr: clss.new_hr,
-          min: clss.new_min
+          time: clss.new_time
       })
   }
 

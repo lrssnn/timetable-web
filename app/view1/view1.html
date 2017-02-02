@@ -19,19 +19,28 @@
                 <!-- For each class in the course, output a list of options for that class, along with a form to add a new
                 option to the class -->
                 <li ng-repeat="class in course.classes">
-                    {{class.name}}
+                    {{class.name}} ({{class.dur}} hrs)
                     <ul ng-repeat="option in class.options">
                         {{time_string_from_option(option)}}
+                        {{option}}
                     </ul>
-                    <input ng-model="class.new_day"/>
-                    <input ng-model="class.new_hr"/>
-                    <input ng-model="class.new_min"/>
+                    <br>
+                    <select ng-model="class.new_day">
+                        <option value="mon">Monday</option>
+                        <option value="tues">Tuesday</option>
+                        <option value="wed">Wednesday</option>
+                        <option value="thurs">Thursday</option>
+                        <option value="fri">Friday</option>
+                        <option value="sat">Saturday</option>
+                        <option value="sun">Sunday</option>
+                    </select>
+                    <input ng-model="class.new_time" type="time"/>
                     <button type="submit" ng-click="add_option_to_class(class)">Add Option</button>
                 </li>
 
             </ul>
-            <input ng-model="course.new_text"/>
-            <input type="number" ng-model="course.new_item"/>
+            <input ng-model="course.new_text" placeholder="New Class in {{course.name}}"/>
+            <input type="number" ng-model="course.new_dur" placeholder="Class length (hrs)"/>
             <button type="submit" ng-click="add_class_to_course(course)">Add Course</button>
         </li>
     </ul>
