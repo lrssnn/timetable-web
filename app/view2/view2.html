@@ -1,3 +1,23 @@
 <p>View 2 should be the timetable page. A big old timetable with the data provided from the last page
    click a choice to select it and deselect(grey) the other choices for that class. Checkbox to show only selected classes
    (preview mode for your completed schedule).</p>
+
+<ul>
+   <!-- For each course in the system, output a list of classes within that course, along with a form to add a new
+   class to the course -->
+   <li ng-repeat="course in courses">
+      {{course.name}}
+      <ul>
+         <!-- For each class in the course, output a list of options for that class, along with a form to add a new
+         option to the class -->
+         <li ng-repeat="class in course.classes">
+            {{class.name}} ({{class.dur}} hrs)
+            <ul ng-repeat="option in class.options">
+               {{time_string_from_option(option)}}
+               {{option}}
+            </ul>
+            <br>
+         </li>
+      </ul>
+   </li>
+</ul>

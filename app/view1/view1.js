@@ -9,17 +9,16 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', function($scope) {
+.controller('View1Ctrl', ['$scope', 'Courses', function($scope, Courses) {
 
-  $scope.courses = [];
-
+    $scope.courses = Courses;
   $scope.addCourse = function() {
       var result = {
           name: $scope.course_name,
           classes: []
       };
 
-      $scope.courses.push(result);
+      Courses.push(result);
   };
 
   $scope.add_class_to_course = function(course) {
