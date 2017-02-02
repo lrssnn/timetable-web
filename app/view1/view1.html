@@ -3,13 +3,7 @@
     from the UON website</p>
 
 <form>
-    <label>Course Name: </label><input type="text" placeholder="MATH1000" ng-model="course_name"/>
-    <label>Course Times:</label>
-    <ul>
-        <li ng-repeat="class in classes">
-            <input>
-        </li>
-    </ul>
+    <label>Course Name: </label><input type="text" placeholder="MATH1000" ng-model="course_name"/><br/>
     <button type="submit" name="action" ng-click="addCourse()">Save Course</button>
 
 </form>
@@ -17,8 +11,28 @@
 
 <div>
     <ul>
+        <!-- For each course in the system, output a list of classes within that course, along with a form to add a new
+        class to the course -->
         <li ng-repeat="course in courses">
             {{course.name}}
+            <ul>
+                <!-- For each class in the course, output a list of options for that class, along with a form to add a new
+                option to the class -->
+                <li ng-repeat="class in course.classes">
+                    {{class.name}}
+                    <ul ng-repeat="option in class.options">
+                        {{time_string_from_option(option)}}
+                    </ul>
+                    <input ng-model="class.new_day"/>
+                    <input ng-model="class.new_hr"/>
+                    <input ng-model="class.new_min"/>
+                    <button type="submit" ng-click="add_option_to_class(class)">Add Option</button>
+                </li>
+
+            </ul>
+            <input ng-model="course.new_text"/>
+            <input type="number" ng-model="course.new_item"/>
+            <button type="submit" ng-click="add_class_to_course(course)">Add Course</button>
         </li>
     </ul>
 </div>

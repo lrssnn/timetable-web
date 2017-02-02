@@ -12,32 +12,34 @@ angular.module('myApp.view1', ['ngRoute'])
 .controller('View1Ctrl', ['$scope', function($scope) {
 
   $scope.courses = [];
-  $scope.classes = [];
-  $scope.class_times = [];
 
   $scope.addCourse = function() {
       var result = {
           name: $scope.course_name,
-          classes: $scope.classes
+          classes: []
       };
 
       $scope.courses.push(result);
   };
 
-  $scope.addClass = function() {
-      var result = {
-          name: $scope.class_name,
-          times: $scope.class_times
-      };
+  $scope.add_class_to_course = function(course) {
+      course.classes.push({
+          name: course.new_text,
+          dur: course.new_dur,
+          options: []
+      })
+  }
 
-      $scope.classes.add(result);
-  };
+  // Adopting 'clss' as 'class' because class is a keyword
+  $scope.add_option_to_class = function(clss) {
+      clss.options.push({
+          day: clss.new_day,
+          hr: clss.new_hr,
+          min: clss.new_min
+      })
+  }
 
-  $scope.addTime = function() {
-      var result = {
-          time: $scope.time
-      };
-
-      $scope.class_times.add(result);
+  $scope.time_string_from_option = function(option) {
+      return "IMDABES"
   }
 }]);
