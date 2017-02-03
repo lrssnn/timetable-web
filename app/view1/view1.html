@@ -26,15 +26,11 @@
                     </ul>
                     <br>
                     <select ng-model="class.new_day">
-                        <option value="mon">Monday</option>
-                        <option value="tues">Tuesday</option>
-                        <option value="wed">Wednesday</option>
-                        <option value="thurs">Thursday</option>
-                        <option value="fri">Friday</option>
-                        <option value="sat">Saturday</option>
-                        <option value="sun">Sunday</option>
+                        <option ng-repeat="day in day_range()" value="{{day}}">{{day}}</option>
                     </select>
-                    <input ng-model="class.new_time" type="time"/>
+                    <select ng-model="class.new_time">
+                        <option ng-repeat="time in time_range()" value="{{time}}">{{time}}</option>
+                    </select>
                     <button type="submit" ng-click="add_option_to_class(class)">Add Option</button>
                 </li>
 

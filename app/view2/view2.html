@@ -21,3 +21,12 @@
       </ul>
    </li>
 </ul>
+
+<!-- Calendar -->
+<table>
+   <tr ng-repeat="i in time_range()">
+      <th ng-repeat="day in day_range()">
+         {{day}}, {{i}}
+      </th>
+   </tr>
+</table>
