@@ -30,6 +30,7 @@ angular.module('Timetables.Display', ['ngRoute'])
         return res;
     };
 
+    // Returns every option in the system which starts in the provided day/time combo
     $scope.options_in_timeslot = function(day, time) {
         var res = [];
 
