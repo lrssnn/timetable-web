@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('Timetables.Display', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view2', {
-    templateUrl: 'view2/view2.html',
-    controller: 'View2Ctrl'
+  $routeProvider.when('/Display', {
+    templateUrl: 'Display/Display.html',
+    controller: 'DisplayCtrl'
   });
 }])
 
-.controller('View2Ctrl', ['$scope', 'Courses', function($scope, Courses) {
+.controller('DisplayCtrl', ['$scope', 'Courses', function($scope, Courses) {
     $scope.courses = Courses;
 
     $scope.time_range = function () {
@@ -32,8 +32,6 @@ angular.module('myApp.view2', ['ngRoute'])
 
     $scope.options_in_timeslot = function(day, time) {
         var res = [];
-
-
 
         for(var i in Courses){
             var course = Courses[i];

@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('Timetables.Ingest', ['ngRoute'])
 
     .config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/view1', {
-            templateUrl: 'view1/view1.html',
-            controller: 'View1Ctrl'
+        $routeProvider.when('/Ingest', {
+            templateUrl: 'Ingest/Ingest.html',
+            controller: 'IngestCtrl'
         });
     }])
 
-    .controller('View1Ctrl', ['$scope', 'Courses', function ($scope, Courses) {
+    .controller('IngestCtrl', ['$scope', 'Courses', function ($scope, Courses) {
 
         $scope.courses = Courses;
         $scope.addCourse = function () {
