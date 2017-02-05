@@ -1,43 +1,82 @@
-<p> View 1 should be the data ingest page: A form to add classes manually (one course at a time: course name then any
-    number of classes, with any number of choices for each class) and hopefully a button to ingest classes by course code
-    from the UON website</p>
+<h4>Add Timetable Data</h4>
 
-<form>
-    <label>Course Name: </label><input type="text" placeholder="MATH1000" ng-model="course_name"/><br/>
-    <button type="submit" name="action" ng-click="addCourse()">Save Course</button>
+<div class="">
+    <div class="row">
+        <form>
+            <div class="input-field col s4">
+                <input type="text" ng-model="course_name" id="new_course_name"/>
+                <label for="new_course_name">Course Name: </label>
+            </div>
+            <div class="col s2">
+                <button type="submit" name="action" ng-click="addCourse()" class="waves-effect waves-light btn">Add Course
+                </button>
+            </div>
+        </form>
+    </div>
 
-</form>
 
-
-<div>
-    <ul>
+    <div>
         <!-- For each course in the system, output a list of classes within that course, along with a form to add a new
         class to the course -->
-        <li ng-repeat="course in courses">
-            {{course.name}}
-            <ul>
+        <div ng-repeat="course in courses">
+            <div class="row">
+
+                <div class="col s6">
+                    <b>{{course.name}}</b>
+                </div>
+            </div>
+            <div>
                 <!-- For each class in the course, output a list of options for that class, along with a form to add a new
                 option to the class -->
-                <li ng-repeat="class in course.classes">
-                    {{class.name}} ({{class.dur}} hrs)
-                    <ul ng-repeat="option in class.options">
-                        {{time_string_from_option(option)}}
-                        {{option}}
-                    </ul>
-                    <br>
-                    <select ng-model="class.new_day">
-                        <option ng-repeat="day in day_range()" value="{{day}}">{{day}}</option>
-                    </select>
-                    <select ng-model="class.new_time">
-                        <option ng-repeat="time in time_range()" value="{{time}}">{{time}}</option>
-                    </select>
-                    <button type="submit" ng-click="add_option_to_class(class)">Add Option</button>
-                </li>
+                <div ng-repeat="class in course.classes">
+                    <div class="row">
+                        <div class="col s6 offset-s1">
+                            <u> - {{class.name}} ({{class.dur}} hrs) </u>
+                        </div>
+                    </div>
+                    <div ng-repeat="option in class.options" class="row">
+                        <div class="col s6 offset-s1">
+                            {{option.day}}: {{option.time}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <form>
+                            <div class="input-field col s3 offset-s1">
+                                <select ng-model="class.new_day" class="browser-default">
+                                    <option value="" disabled selected>Day</option>
+                                    <option ng-repeat="day in day_range()" value="{{day}}">{{day}}</option>
+                                </select>
+                            </div>
+                            <div class="input-field col s3">
+                                <select ng-model="class.new_time" class="browser-default">
+                                    <option value="" disabled selected>Start Time</option>
+                                    <option ng-repeat="time in time_range()" value="{{time}}">{{time}}</option>
+                                </select>
+                            </div>
+                            <button type="submit" ng-click="add_option_to_class(class)"
+                                    class="waves-effect waves-light btn">Add Option
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-            </ul>
-            <input ng-model="course.new_text" placeholder="New Class in {{course.name}}"/>
-            <input type="number" ng-model="course.new_dur" placeholder="Class length (hrs)"/>
-            <button type="submit" ng-click="add_class_to_course(course)">Add Course</button>
-        </li>
-    </ul>
+            <div class="row">
+                <form>
+                    <div class="input-field col s3">
+                        <input ng-model="course.new_text" placeholder="New Class in {{course.name}}"/>
+                    </div>
+                    <div class="input-field col s3">
+                        <input type="number" ng-model="course.new_dur" placeholder="Class length (hrs)"/>
+                    </div>
+                    <div class="input-field col s2">
+                        <button type="submit" ng-click="add_class_to_course(course)"
+                                class="waves-effect waves-light btn">
+                            Add Class
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
