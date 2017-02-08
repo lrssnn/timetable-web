@@ -32,11 +32,11 @@ angular.module('Timetables.Display', ['ngRoute'])
     $scope.options_in_timeslot = function(day, time) {
         var res = [];
 
-        for(var i in Courses){
+        for(var i in Courses) {
             var course = Courses[i];
-            for(var j in course.classes){
+            for (var j in course.classes) {
                 var clss = course.classes[j];
-                for(var k in clss.options) {
+                for (var k in clss.options) {
                     var opt = clss.options[k];
                     if (opt.day == day && opt.time == time) {
                         console.log(day, time);

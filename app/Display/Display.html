@@ -24,7 +24,7 @@
 </ul>
 
 <!-- Calendar -->
-<table class="striped">
+<table class="striped responsive-table">
     <thead>
     <tr>
         <th>
@@ -41,12 +41,12 @@
         </th>
         <!--Colspan attribute to merge rows?-->
         <td ng-repeat="day in day_range()">
-            {{day}}, {{i}}
-            <ol>
-                <li ng-repeat="option in options_in_timeslot(day, i)">
-                    {{option}}
-                </li>
-            </ol>
+            <!--{{day}}, {{i}}-->
+                <div ng-repeat="option in options_in_timeslot(day, i)">
+                    <div class="teal">
+                        {{option.day}}: {{option.time}}
+                    </div>
+                </div>
         </td>
     </tr>
 </table>
