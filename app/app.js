@@ -10,5 +10,36 @@ angular.module('Timetables', [
 
     $routeProvider.otherwise({redirectTo: '/Ingest'});
 }]).factory('Courses', function CoursesFactory() {
-    return [];
+    return [{
+        name: "Test",
+        classes: [{
+            name: "Class",
+            dur: 1,
+            options: [{
+                day: "Monday",
+                time: "09:00"
+            },
+                {
+                    day: "Tuesday",
+                    time: "10:00"
+                },
+                {
+                    day: "Wednesday",
+                    time: "11:00"
+                },
+                {
+                    day: "Thursday",
+                    time: "12:00"
+                },
+                {
+                    day: "Friday",
+                    time: "13:00"
+                },
+                {
+                    day: "Thursday",
+                    time: "11:00"
+                }]
+        }]
+    }];
+    ;
 });
