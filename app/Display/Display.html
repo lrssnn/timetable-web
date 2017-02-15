@@ -3,26 +3,6 @@
     classes
     (preview mode for your completed schedule).</p>
 
-<ul>
-    <!-- For each course in the system, output a list of classes within that course, along with a form to add a new
-    class to the course -->
-    <li ng-repeat="course in courses">
-        {{course.name}}
-        <ul>
-            <!-- For each class in the course, output a list of options for that class, along with a form to add a new
-            option to the class -->
-            <li ng-repeat="class in course.classes">
-                {{class.name}} ({{class.dur}} hrs)
-                <ul ng-repeat="option in class.options">
-                    {{time_string_from_option(option)}}
-                    {{option}}
-                </ul>
-                <br>
-            </li>
-        </ul>
-    </li>
-</ul>
-
 <!-- Calendar -->
 <table class="striped responsive-table">
     <thead>
@@ -39,12 +19,16 @@
         <th>
             {{i}}
         </th>
-        <!--Colspan attribute to merge rows?-->
         <td ng-repeat="day in day_range()">
-            <!--{{day}}, {{i}}-->
-                <div ng-repeat="option in options_in_timeslot(day, i)">
-                    <div class="teal">
-                        {{option.day}}: {{option.time}}
+                <div ng-repeat="opt in options_in_timeslot(day, i)">
+                    <div class="teal lighten-3">
+                        <b ng-if="opt.selected">
+                            {{opt.day}}: {{opt.time}}
+                        </b>
+
+                        <div ng-if="!opt.selected">
+                            {{opt.day}}: {{opt.time}}
+                        </div>
                     </div>
                 </div>
         </td>

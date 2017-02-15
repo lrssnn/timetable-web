@@ -38,15 +38,12 @@ angular.module('Timetables.Display', ['ngRoute'])
                 var clss = course.classes[j];
                 for (var k in clss.options) {
                     var opt = clss.options[k];
-                    if (opt.day == day && opt.time == time) {
-                        console.log(day, time);
-                        console.log(course);
+                    if (opt.day == day && opt.time == time){
                         res.push(opt);
                     }
                 }
             }
         }
-
         return res;
     }
 }]);
