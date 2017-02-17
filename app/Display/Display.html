@@ -20,16 +20,9 @@
             {{i}}
         </th>
         <td ng-repeat="day in day_range()">
-            <!--<div ng-repeat="opt in options_in_timeslot(day, i)">-->
-            <div ng-repeat="bundle in flat_options() | filter: {opt: {day: day, time: i}}">
+            <div ng-repeat="bundle in bundles | filter: {opt: {day: day, time: i}}">
                 <div class="teal lighten-3">
-                    <!-- Each template needs to be in its own div or else it shits itself?-->
-                    <div>
-                        {{i}}
-                    </div>
-                    <div>
-                        {{day}}
-                    </div>
+                    {{day}} {{i}}
                 </div>
         </td>
     </tr>
