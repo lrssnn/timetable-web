@@ -1,7 +1,16 @@
-<p>View 2 should be the timetable page. A big old timetable with the data provided from the last page
-    click a choice to select it and deselect(grey) the other choices for that class. Checkbox to show only selected
-    classes
-    (preview mode for your completed schedule).</p>
+<ul>
+    <li>
+        - Different colour for each course (have an array of colour names and iterate through them making them a field in
+        each new course when you add it.
+    </li>
+    <li>
+        - Course colour key with checkboxes to show/hide each course
+    </li>
+    <li>
+        - Checkbox to show/hide deselected course. Only available when every class has an option selected (timetable
+        preview)
+    </li>
+</ul>
 
 <!-- Calendar -->
 <table class="striped">
@@ -22,11 +31,11 @@
         <td ng-repeat="day in day_range()">
             <div ng-repeat="bundle in bundles | filter: {opt: {day: day, time: i}}">
                 <div ng-if="bundle.opt.selected" class="teal lighten-2" ng-click="make_active(bundle)">
-                    {{day}} {{i}}
+                    {{bundle.course.name}} {{bundle.clss.name}}
                 </div>
 
                 <div ng-if="!bundle.opt.selected" class="teal lighten-5" ng-click="make_active(bundle)">
-                    {{day}} {{i}}
+                    {{bundle.course.name}} {{bundle.clss.name}}
                 </div>
         </td>
     </tr>

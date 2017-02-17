@@ -13,7 +13,7 @@ angular.module('Timetables', [
     return [{
         name: "Test",
         classes: [{
-            name: "Class",
+            name: "Lecture",
             dur: 1,
             options: [
                 {
