@@ -49,15 +49,15 @@ angular.module('Timetables.Ingest', ['ngRoute'])
 
         $scope.time_range = function () {
             return ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
-                    "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"];
+                "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"];
         };
 
         // A list of days
-        $scope.day_range = function(){
+        $scope.day_range = function () {
             var res = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
             var weekend = true;
-            if(weekend){
+            if (weekend) {
                 return res.concat(['Saturday', 'Sunday']);
             }
 
