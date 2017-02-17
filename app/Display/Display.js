@@ -12,7 +12,7 @@ angular.module('Timetables.Display', ['ngRoute'])
     .controller('DisplayCtrl', ['$scope', 'Courses', function ($scope, Courses) {
         $scope.courses = Courses;
 
-        var flat_bundles = function() {
+        var flat_bundles = function () {
             var res = [];
             for (var i in Courses) {
                 var course = Courses[i];
@@ -50,4 +50,19 @@ angular.module('Timetables.Display', ['ngRoute'])
 
             return res;
         };
+
+        $scope.make_active = function (bundle) {
+            var course = bundle.course, clss = bundle.clss, target_opt = bundle.opt;
+            for (var i in clss.options) {
+                var opt = clss.options[i];
+
+                if (opt == target_opt) {
+                    console.log("Match: ", opt, target_opt);
+                    opt.selected = true;
+                } else {
+                    opt.selected = false;
+                    console.log("Fail: ", opt, target_opt);
+                }
+            }
+        }
     }]);
