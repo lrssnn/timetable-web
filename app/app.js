@@ -16,6 +16,7 @@ angular.module('Timetables', [
     return [{
         name: "Test",
         colour: "purple",
+        active: true,
         classes: [{
             name: "Lecture",
             dur: 1,

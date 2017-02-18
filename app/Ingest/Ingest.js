@@ -25,6 +25,7 @@ angular.module('Timetables.Ingest', ['ngRoute'])
         var result = {
             name: $scope.course_name,
             colour: get_colour.next(),
+            active: true,
             classes: []
         };
 
