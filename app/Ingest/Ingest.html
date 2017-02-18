@@ -5,7 +5,7 @@
         <form>
             <div class="input-field col s4">
                 <input type="text" ng-model="course_name" id="new_course_name"/>
-                <label for="new_course_name">Course Name: </label>
+                <label for="new_course_name">New Course Name: </label>
             </div>
             <div class="col s2">
                 <button type="submit" name="action" ng-click="addCourse()" class="waves-effect waves-light btn">Add
@@ -16,10 +16,10 @@
     </div>
 
 
-    <div>
+    <div class="collection">
         <!-- For each course in the system, output a list of classes within that course, along with a form to add a new
         class to the course -->
-        <div ng-repeat="course in courses">
+        <div ng-repeat="course in courses" class="collection-item">
             <div class="row">
 
                 <div class="col s6">
@@ -42,13 +42,13 @@
                     </div>
                     <div class="row">
                         <form>
-                            <div class="input-field col s3 offset-s1">
+                            <div class="input-field col s1 offset-s1">
                                 <select ng-model="class.new_day" class="browser-default">
                                     <option value="" disabled selected>Day</option>
                                     <option ng-repeat="day in day_range" value="{{day}}">{{day}}</option>
                                 </select>
                             </div>
-                            <div class="input-field col s3">
+                            <div class="input-field col s1">
                                 <select ng-model="class.new_time" class="browser-default">
                                     <option value="" disabled selected>Start Time</option>
                                     <option ng-repeat="time in time_range" value="{{time}}">{{time}}</option>
@@ -64,7 +64,7 @@
 
             <div class="row">
                 <form>
-                    <div class="input-field col s3">
+                    <div class="input-field col s3 offset-s1">
                         <input ng-model="course.new_text" placeholder="New Class in {{course.name}}"/>
                     </div>
                     <div class="input-field col s3">
