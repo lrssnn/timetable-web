@@ -53,6 +53,9 @@ angular.module('Timetables.Display', ['ngRoute'])
         };
 
         $scope.selections_complete = function() {
+	    if(Courses.length == 0) {
+	        return false;
+            }
             for(var i in Courses){
                 var course = Courses[i];
                 for(var j in course.classes){
