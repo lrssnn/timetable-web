@@ -40,11 +40,35 @@ angular.module('Timetables.Display', ['ngRoute'])
         $scope.day_range = day_range;
 
         // Activate the given bundle (Course, class, timeslot triple) and deactivate all other options in that class
-        $scope.make_active = function (bundle) {
+        $scope.toggle_active = function (bundle) {
             var clss = bundle.clss, target_opt = bundle.opt; // Unpack Bundle
+            if(target_opt.selected){
+                target_opt.selected = false;
+                return;
+            }
             for (var i in clss.options) {
                 var opt = clss.options[i];
                 opt.selected = opt == target_opt; // Activate the class if the option is what we are looking for
             }
-        }
+        };
+
+        $scope.selections_complete = function() {
+            for(var i in Courses){
+                var course = Courses[i];
+                for(var j in course.classes){
+                    var clss = course.classes[j];
+                    var satisfied = false;
+                    for(var k in clss.options){
+                        var opt = clss.options[k];
+                        if(opt.selected){
+                            satisfied = true;
+                        }
+                    }
+                    if(!satisfied){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        };
     }]);

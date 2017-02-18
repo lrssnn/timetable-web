@@ -1,22 +1,18 @@
-<ul>
-    <li>
-        - Different colour for each course (have an array of colour names and iterate through them making them a field in
-        each new course when you add it.
-    </li>
-    <li>
-        - Course colour key with checkboxes to show/hide each course
-    </li>
-    <li>
-        - Checkbox to show/hide deselected course. Only available when every class has an option selected (timetable
-        preview)
-    </li>
-</ul>
-
 <!-- Course Key -->
 <div class="row">
-    <div ng-repeat="course in courses" class="col s2 {{course.colour}} lighten-2">
-        {{course.name}}
+    <div ng-repeat="course in courses" class="col s2" ng-click="course.active=!course.active">
+        <div ng-if="course.active" class="{{course.colour}} lighten-2">
+            {{course.name}}
+        </div>
+        <div ng-if="!course.active" class="{{course.colour}} lighten-5">
+            {{course.name}}
+        </div>
     </div>
+</div>
+
+<div class="row">
+    <input type="checkbox" ng-model="preview_mode" id="preview_mode" ng-disabled="!selections_complete()"/>
+    <label for="preview_mode">Preview Mode (Display only selected options)</label>
 </div>
 <!-- Calendar -->
 <table class="striped">
@@ -36,11 +32,13 @@
         </th>
         <td ng-repeat="day in day_range">
             <div ng-repeat="bundle in bundles | filter: {opt: {day: day, time: i}}">
-                <div ng-if="bundle.opt.selected" class="{{bundle.course.colour}} lighten-2" ng-click="make_active(bundle)">
+                <div ng-if="bundle.course.active && bundle.opt.selected" class="{{bundle.course.colour}} lighten-2"
+                     ng-click="toggle_active(bundle)">
                     {{bundle.course.name}} {{bundle.clss.name}}
                 </div>
 
-                <div ng-if="!bundle.opt.selected" class="{{bundle.course.colour}} lighten-5" ng-click="make_active(bundle)">
+                <div ng-if="!preview_mode && bundle.course.active && !bundle.opt.selected" class="{{bundle.course.colour}} lighten-5"
+                     ng-click="toggle_active(bundle)">
                     {{bundle.course.name}} {{bundle.clss.name}}
                 </div>
         </td>
