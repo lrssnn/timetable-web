@@ -45,13 +45,13 @@
                             <div class="input-field col s3 offset-s1">
                                 <select ng-model="class.new_day" class="browser-default">
                                     <option value="" disabled selected>Day</option>
-                                    <option ng-repeat="day in day_range()" value="{{day}}">{{day}}</option>
+                                    <option ng-repeat="day in day_range" value="{{day}}">{{day}}</option>
                                 </select>
                             </div>
                             <div class="input-field col s3">
                                 <select ng-model="class.new_time" class="browser-default">
                                     <option value="" disabled selected>Start Time</option>
-                                    <option ng-repeat="time in time_range()" value="{{time}}">{{time}}</option>
+                                    <option ng-repeat="time in time_range" value="{{time}}">{{time}}</option>
                                 </select>
                             </div>
                             <button type="submit" ng-click="add_option_to_class(class)"

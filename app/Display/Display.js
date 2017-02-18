@@ -9,7 +9,7 @@ angular.module('Timetables.Display', ['ngRoute'])
         });
     }])
 
-    .controller('DisplayCtrl', ['$scope', 'Courses', function ($scope, Courses) {
+    .controller('DisplayCtrl', ['$scope', 'Courses', 'day_range', 'time_range', function ($scope, Courses, day_range, time_range) {
         $scope.courses = Courses;
 
         // Pull the course heirarchy which makes sense for data entry out into a flat format which makes sense for display.
@@ -36,24 +36,8 @@ angular.module('Timetables.Display', ['ngRoute'])
         };
 
         $scope.bundles = flat_bundles();
-
-        // Return an array of each time delineation in the system
-        $scope.time_range = function () {
-            return ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
-                "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"];
-        };
-
-        // Return an array of each day in the system
-        $scope.day_range = function () {
-            var res = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-
-            var weekend = true;
-            if (weekend) {
-                return res.concat(['Saturday', 'Sunday']);
-            }
-
-            return res;
-        };
+        $scope.time_range = time_range;
+        $scope.day_range = day_range;
 
         // Activate the given bundle (Course, class, timeslot triple) and deactivate all other options in that class
         $scope.make_active = function (bundle) {

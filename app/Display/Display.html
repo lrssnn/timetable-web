@@ -12,6 +12,12 @@
     </li>
 </ul>
 
+<!-- Course Key -->
+<div class="row">
+    <div ng-repeat="course in courses" class="col s2 {{course.colour}} lighten-2">
+        {{course.name}}
+    </div>
+</div>
 <!-- Calendar -->
 <table class="striped">
     <thead>
@@ -19,22 +25,22 @@
         <th>
             <!--Empty header column for the left side time scale-->
         </th>
-        <th ng-repeat="day in day_range()">
+        <th ng-repeat="day in day_range">
             {{day}}
         </th>
     </tr>
     </thead>
-    <tr ng-repeat="i in time_range()">
+    <tr ng-repeat="i in time_range">
         <th>
             {{i}}
         </th>
-        <td ng-repeat="day in day_range()">
+        <td ng-repeat="day in day_range">
             <div ng-repeat="bundle in bundles | filter: {opt: {day: day, time: i}}">
-                <div ng-if="bundle.opt.selected" class="teal lighten-2" ng-click="make_active(bundle)">
+                <div ng-if="bundle.opt.selected" class="{{bundle.course.colour}} lighten-2" ng-click="make_active(bundle)">
                     {{bundle.course.name}} {{bundle.clss.name}}
                 </div>
 
-                <div ng-if="!bundle.opt.selected" class="teal lighten-5" ng-click="make_active(bundle)">
+                <div ng-if="!bundle.opt.selected" class="{{bundle.course.colour}} lighten-5" ng-click="make_active(bundle)">
                     {{bundle.course.name}} {{bundle.clss.name}}
                 </div>
         </td>
