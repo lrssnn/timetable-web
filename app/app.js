@@ -13,43 +13,5 @@ angular.module('Timetables', [
     .value('time_range', ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
         "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"])
     .factory('Courses', function CoursesFactory() {
-    return [{
-        name: "Test",
-        colour: "purple",
-        classes: [{
-            name: "Lecture",
-            dur: 1,
-            options: [
-                {
-                    day: "Monday",
-                    time: "09:00",
-                    selected: false
-                },
-                {
-                    selected: false,
-                    day: "Tuesday",
-                    time: "10:00"
-                },
-                {
-                    selected: false,
-                    day: "Wednesday",
-                    time: "11:00"
-                },
-                {
-                    selected: true,
-                    day: "Thursday",
-                    time: "12:00"
-                },
-                {
-                    selected: false,
-                    day: "Friday",
-                    time: "13:00"
-                },
-                {
-                    selected: false,
-                    day: "Thursday",
-                    time: "11:00"
-                }]
-        }]
-    }];
+    return [];
 });
