@@ -1,6 +1,24 @@
-<p>HANDLE multiple hours:
-    will have to pull things in that started time-length hours ago
-    add some sort of (continued) flag since they will be in separate boxes</p>
+<div>
+    View your timetable:
+    <ul>
+        <li>Below is a colour key for every course in your timetable. Clicking on a course in the key will toggle its
+            presence on the timetable view.
+        </li>
+        <li>Every option for every class is displayed in its timeslot below. Options can be clicked to toggle selection,
+            indicating that timeslot as the one you wish to attend.
+        </li>
+        <li>In brackets after the name of the class is the option number (e.g. a class with 3 tutorials will have
+            tutorial (1), tutorial (2) and tutorial (3)). These numbers help identify long overlapping options.
+        </li>
+        <li>Classes which last for more than one hour are displayed in every timeslot which they fill, however only the
+            first (non 'continued') appearance can be used to select that class. Continued options are also displayed
+            slightly lighter than their initial hour.
+        </li>
+        <li>Once a selection has been made for every class in each course, Preview Mode becomes available which hides
+            selected options and allows you to see what your final timetable will look like.
+        </li>
+    </ul>
+</div>
 
 <!-- Course Key -->
 <div class="row">
@@ -42,19 +60,21 @@
                     {{bundle.course.name}} {{bundle.clss.name}} ({{bundle.opt.id}})
                 </div>
 
-                <div ng-if="!preview_mode && bundle.course.active && !bundle.opt.selected" class="{{bundle.course.colour}} lighten-5"
+                <div ng-if="!preview_mode && bundle.course.active && !bundle.opt.selected"
+                     class="{{bundle.course.colour}} lighten-4"
                      ng-click="toggle_active(bundle)">
                     {{bundle.course.name}} {{bundle.clss.name}} ({{bundle.opt.id}})
                 </div>
             </div>
 
             <div ng-repeat="bundle in cont_bundles | filter: {opt: {day: day, time: i}}">
-                <div ng-if="bundle.course.active && bundle.parent.selected" class="{{bundle.course.colour}} lighten-2"
+                <div ng-if="bundle.course.active && bundle.parent.selected" class="{{bundle.course.colour}} lighten-3"
                      ng-click="toggle_active(bundle)">
                     {{bundle.course.name}} {{bundle.clss.name}} ({{bundle.parent.id}} continued)
                 </div>
 
-                <div ng-if="!preview_mode && bundle.course.active && !bundle.parent.selected" class="{{bundle.course.colour}} lighten-5"
+                <div ng-if="!preview_mode && bundle.course.active && !bundle.parent.selected"
+                     class="{{bundle.course.colour}} lighten-5"
                      ng-click="toggle_active(bundle)">
                     {{bundle.course.name}} {{bundle.clss.name}} ({{bundle.parent.id}} continued)
                 </div>
