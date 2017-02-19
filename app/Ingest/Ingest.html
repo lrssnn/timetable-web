@@ -34,62 +34,65 @@
         class to the course -->
         <div ng-repeat="course in courses" class="collection-item">
             <div class="row">
-
                 <div class="col s6">
                     <b>{{course.name}}</b>
                 </div>
+                <i class="material-icons" ng-if="!course.collapsed" ng-click="course.collapsed = true">trending_up</i>
+                <i class="material-icons" ng-if="course.collapsed" ng-click="course.collapsed = false">trending_down</i>
             </div>
-            <div>
-                <!-- For each class in the course, output a list of options for that class, along with a form to add a new
-                option to the class -->
-                <div ng-repeat="class in course.classes">
-                    <div class="row">
-                        <div class="col s6 offset-s1">
-                            <u> - {{class.name}} ({{class.dur}} hrs) </u>
-                        </div>
-                    </div>
-                    <div ng-repeat="option in class.options" class="row">
-                        <div class="col s6 offset-s1">
-                            {{option.day}}: {{option.time}}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <form>
-                            <div class="input-field col s1 offset-s1">
-                                <select ng-model="class.new_day" class="browser-default">
-                                    <option value="" disabled selected>Day</option>
-                                    <option ng-repeat="day in day_range" value="{{day}}">{{day}}</option>
-                                </select>
+            <div ng-if="!course.collapsed">
+                <div>
+                    <!-- For each class in the course, output a list of options for that class, along with a form to add a new
+                    option to the class -->
+                    <div ng-repeat="class in course.classes">
+                        <div class="row">
+                            <div class="col s6 offset-s1">
+                                <u> - {{class.name}} ({{class.dur}} hrs) </u>
                             </div>
-                            <div class="input-field col s1">
-                                <select ng-model="class.new_time" class="browser-default">
-                                    <option value="" disabled selected>Start Time</option>
-                                    <option ng-repeat="time in time_range" value="{{time}}">{{time}}</option>
-                                </select>
+                        </div>
+                        <div ng-repeat="option in class.options" class="row">
+                            <div class="col s6 offset-s1">
+                                {{option.day}}: {{option.time}}
                             </div>
-                            <button type="submit" ng-click="add_option_to_class(class)"
-                                    class="waves-effect waves-light btn">Add Option
-                            </button>
-                        </form>
+                        </div>
+                        <div class="row">
+                            <form>
+                                <div class="input-field col s1 offset-s1">
+                                    <select ng-model="class.new_day" class="browser-default">
+                                        <option value="" disabled selected>Day</option>
+                                        <option ng-repeat="day in day_range" value="{{day}}">{{day}}</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s1">
+                                    <select ng-model="class.new_time" class="browser-default">
+                                        <option value="" disabled selected>Start Time</option>
+                                        <option ng-repeat="time in time_range" value="{{time}}">{{time}}</option>
+                                    </select>
+                                </div>
+                                <button type="submit" ng-click="add_option_to_class(class)"
+                                        class="waves-effect waves-light btn">Add Option
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <form>
-                    <div class="input-field col s3 offset-s1">
-                        <input ng-model="course.new_text" placeholder="New Class in {{course.name}}"/>
-                    </div>
-                    <div class="input-field col s3">
-                        <input type="number" ng-model="course.new_dur" placeholder="Class length (hrs)"/>
-                    </div>
-                    <div class="input-field col s2">
-                        <button type="submit" ng-click="add_class_to_course(course)"
-                                class="waves-effect waves-light btn">
-                            Add Class
-                        </button>
-                    </div>
-                </form>
+                <div class="row">
+                    <form>
+                        <div class="input-field col s3 offset-s1">
+                            <input ng-model="course.new_text" placeholder="New Class in {{course.name}}"/>
+                        </div>
+                        <div class="input-field col s3">
+                            <input type="number" ng-model="course.new_dur" placeholder="Class length (hrs)"/>
+                        </div>
+                        <div class="input-field col s2">
+                            <button type="submit" ng-click="add_class_to_course(course)"
+                                    class="waves-effect waves-light btn">
+                                Add Class
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

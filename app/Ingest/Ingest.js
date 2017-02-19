@@ -26,6 +26,7 @@ angular.module('Timetables.Ingest', ['ngRoute'])
             name: $scope.course_name,
             colour: get_colour.next(),
             active: true,
+            collapsed: false,
             classes: []
         };
 
