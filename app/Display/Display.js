@@ -12,6 +12,17 @@ angular.module('Timetables.Display', ['ngRoute'])
     .controller('DisplayCtrl', ['$scope', 'Courses', 'day_range', 'time_range', function ($scope, Courses, day_range, time_range) {
         $scope.courses = Courses;
 
+        var hr_from_time = function(time){
+            var split = time.split(":");
+            return parseInt(split[0]);
+        };
+
+        var time_from_hr = function(hr){
+            var str = hr.toString();
+            if(str.length < 2) str = "0" + str;
+            return str + ":00";
+        };
+
         // Pull the course heirarchy which makes sense for data entry out into a flat format which makes sense for display.
         // Iterating through this function in the template DOES NOT WORK PROPERLY, it must be done at page load then
         // iterate through this $scope.bundles variable.
@@ -35,12 +46,42 @@ angular.module('Timetables.Display', ['ngRoute'])
             return res;
         };
 
+        var cont_bundles = function () {
+            var res = [];
+            for (var i in Courses) {
+                var course = Courses[i];
+                for (var j in course.classes) {
+                    var clss = course.classes[j];
+                    if (clss.dur > 1) {
+                        for (var k in clss.options) {
+                            var par_opt = clss.options[k];
+                            for (var slot = 1; slot < clss.dur; slot++) {
+                                var bundle = {
+                                    course: course,
+                                    clss: clss,
+                                    opt: {
+                                        day: par_opt.day,
+                                        time: time_from_hr(hr_from_time(par_opt.time) + slot),
+                                    },
+                                    parent: par_opt
+                                };
+                                res.push(bundle);
+                            }
+                        }
+                    }
+                }
+            }
+            return res;
+        };
+
         $scope.bundles = flat_bundles();
+        $scope.cont_bundles = cont_bundles();
         $scope.time_range = time_range;
         $scope.day_range = day_range;
 
         // Activate the given bundle (Course, class, timeslot triple) and deactivate all other options in that class
         $scope.toggle_active = function (bundle) {
+            if($scope.preview_mode) return;
             var clss = bundle.clss, target_opt = bundle.opt; // Unpack Bundle
             if(target_opt.selected){
                 target_opt.selected = false;

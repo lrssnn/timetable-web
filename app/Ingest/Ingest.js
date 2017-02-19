@@ -46,7 +46,8 @@ angular.module('Timetables.Ingest', ['ngRoute'])
     $scope.add_option_to_class = function (clss) {
         clss.options.push({
             day:  clss.new_day,
-            time: clss.new_time
+            time: clss.new_time,
+            id: clss.options.length + 1,
         })
     };
 
