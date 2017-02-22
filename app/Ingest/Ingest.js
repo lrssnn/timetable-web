@@ -18,6 +18,7 @@ angular.module('Timetables.Ingest', ['ngRoute'])
             colour: get_colour.next(),
             active: true,
             collapsed: false,
+            editing: false,
             classes: []
         };
 
@@ -30,6 +31,7 @@ angular.module('Timetables.Ingest', ['ngRoute'])
         course.classes.push({
             name: course.new_text,
             dur: course.new_dur,
+            editing: false,
             options: []
         });
         course.new_text = "";
@@ -43,9 +45,40 @@ angular.module('Timetables.Ingest', ['ngRoute'])
             day:  clss.new_day,
             time: clss.new_time,
             id: clss.options.length + 1,
+            editing: false
         });
         clss.new_day = "";
         clss.new_time = "";
+    };
+
+    $scope.toggle_edit_opt = function(opt, clss){
+        if(opt.editing){
+            opt.editing = false;
+            return;
+        }
+        for(var i in clss.options){
+            clss.options[i].editing = clss.options[i] == opt;
+        }
+    };
+
+    $scope.toggle_edit_class = function(clss, course){
+        if(clss.editing){
+            clss.editing = false;
+            return;
+        }
+        for(var i in course.classes){
+            course.classes[i].editing = course.classes[i] == clss;
+        }
+    };
+
+    $scope.toggle_edit_course = function(course, courses){
+        if(course.editing){
+            course.editing = false;
+            return;
+        }
+        for(var i in courses){
+            courses[i].editing = courses[i] == course;
+        }
     };
 
     $scope.time_range = time_range;

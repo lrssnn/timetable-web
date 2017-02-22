@@ -34,9 +34,13 @@
         class to the course -->
         <div ng-repeat="course in courses" class="collection-item">
             <div class="row">
-                <div class="col s6">
+                <div class="col s6" ng-if="!course.editing">
                     <b>{{course.name}}</b>
                 </div>
+                <div class="col s6" ng-if="course.editing">
+                    <input ng-model="course.name">
+                </div>
+                <i class="material-icons" ng-click="toggle_edit_course(course, courses)">mode_edit</i>
                 <i class="material-icons" ng-if="!course.collapsed" ng-click="course.collapsed = true">trending_up</i>
                 <i class="material-icons" ng-if="course.collapsed" ng-click="course.collapsed = false">trending_down</i>
             </div>
@@ -46,24 +50,43 @@
                     option to the class -->
                     <div ng-repeat="class in course.classes">
                         <div class="row">
-                            <div class="col s6 offset-s1">
+                            <div class="col s4 offset-s1" ng-if="!class.editing">
                                 <u> - {{class.name}} ({{class.dur}} hrs) </u>
                             </div>
+                            <div ng-if="class.editing">
+                                <input ng-model="class.name" class="col s2 offset-s1">
+                                <input ng-model="class.dur" type="number" class="col s2">
+                            </div>
+                            <i class="material-icons" ng-click="toggle_edit_class(class, course)">mode_edit</i>
                         </div>
                         <div ng-repeat="option in class.options" class="row">
-                            <div class="col s6 offset-s1">
+                            <div class="col s4 offset-s1" ng-if="!option.editing">
                                 {{option.day}}: {{option.time}}
                             </div>
+
+                            <div ng-if="option.editing">
+                                <div class="input-field col s2 offset-s1">
+                                    <select ng-model="option.day" class="browser-default">
+                                        <option ng-repeat="day in day_range" value="{{day}}">{{day}}</option>
+                                    </select>
+                                </div>
+                                <div class="input-field col s2">
+                                    <select ng-model="option.time" class="browser-default">
+                                        <option ng-repeat="time in time_range" value="{{time}}">{{time}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <i class="material-icons" ng-click="toggle_edit_opt(option, class)">mode_edit</i>
                         </div>
                         <div class="row">
                             <form>
-                                <div class="input-field col s1 offset-s1">
+                                <div class="input-field col s2 offset-s1">
                                     <select ng-model="class.new_day" class="browser-default">
                                         <option value="" disabled selected>Day</option>
                                         <option ng-repeat="day in day_range" value="{{day}}">{{day}}</option>
                                     </select>
                                 </div>
-                                <div class="input-field col s1">
+                                <div class="input-field col s2">
                                     <select ng-model="class.new_time" class="browser-default">
                                         <option value="" disabled selected>Start Time</option>
                                         <option ng-repeat="time in time_range" value="{{time}}">{{time}}</option>
