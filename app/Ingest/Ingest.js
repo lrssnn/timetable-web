@@ -7,16 +7,7 @@ angular.module('Timetables.Ingest', ['ngRoute'])
             templateUrl: 'Ingest/Ingest.html',
             controller: 'IngestCtrl'
         });
-    }]).service("get_colour", function get_colour() {
-    this.index = -1;
-    this.next = function () {
-        var colours = ['teal', 'red', 'green'];
-        if (this.index > colours.length) {
-            this.index = -1;
-        }
-        return colours[++this.index];
-    };
-}).controller('IngestCtrl', ['$scope', 'Courses', 'get_colour', 'day_range', 'time_range', function ($scope, Courses, get_colour, day_range, time_range) {
+    }]).controller('IngestCtrl', ['$scope', 'Courses', 'get_colour', 'day_range', 'time_range', function ($scope, Courses, get_colour, day_range, time_range) {
 
     $scope.courses = Courses; // Load global courses into local scope
 

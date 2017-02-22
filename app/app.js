@@ -72,4 +72,13 @@ angular.module('Timetables', [
                     ]
                 }]
         }];
-    });
+    }).service("get_colour", function get_colour() {
+    this.index = -1;
+    this.next = function () {
+        var colours = ['teal', 'red', 'green'];
+        if (this.index > colours.length) {
+            this.index = -1;
+        }
+        return colours[++this.index];
+    };
+});

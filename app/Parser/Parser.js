@@ -8,7 +8,7 @@ angular.module('Timetables.Parser', ['ngRoute'])
             controller: 'ParserCtrl'
         });
     }])
-.controller('ParserCtrl', ['$scope', 'Courses', 'day_range', 'time_range', function ($scope, Courses, day_range, time_range) {
+.controller('ParserCtrl', ['$scope', 'Courses', 'day_range', 'time_range', 'get_colour', function ($scope, Courses, day_range, time_range, get_colour) {
 
     $scope.courses = Courses;
 
@@ -105,7 +105,7 @@ angular.module('Timetables.Parser', ['ngRoute'])
         console.log(classes);
         $scope.courses.push({
             name: course_name,
-            colour: "red",
+            colour: get_colour.next(),
             active: true,
             collapsed: false,
             classes: classes
