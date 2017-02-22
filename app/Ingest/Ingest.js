@@ -22,6 +22,7 @@ angular.module('Timetables.Ingest', ['ngRoute'])
         };
 
         Courses.push(result);
+        $scope.course_name = "";
     };
 
     // Adds a class to the provided course
@@ -30,7 +31,9 @@ angular.module('Timetables.Ingest', ['ngRoute'])
             name: course.new_text,
             dur: course.new_dur,
             options: []
-        })
+        });
+        course.new_text = "";
+        course.new_dur = "";
     };
 
     // Adds an option to the provided class
@@ -40,7 +43,9 @@ angular.module('Timetables.Ingest', ['ngRoute'])
             day:  clss.new_day,
             time: clss.new_time,
             id: clss.options.length + 1,
-        })
+        });
+        clss.new_day = "";
+        clss.new_time = "";
     };
 
     $scope.time_range = time_range;
