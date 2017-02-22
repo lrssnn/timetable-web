@@ -4,7 +4,8 @@
 angular.module('Timetables', [
     'ngRoute',
     'Timetables.Ingest',
-    'Timetables.Display'
+    'Timetables.Display',
+    'Timetables.Parser'
 ]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
