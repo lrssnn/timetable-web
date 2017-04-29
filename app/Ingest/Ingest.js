@@ -7,9 +7,10 @@ angular.module('Timetables.Ingest', ['ngRoute'])
             templateUrl: 'Ingest/Ingest.html',
             controller: 'IngestCtrl'
         });
-    }]).controller('IngestCtrl', ['$scope', 'Courses', 'get_colour', 'day_range', 'time_range', function ($scope, Courses, get_colour, day_range, time_range) {
+    }]).controller('IngestCtrl', ['$scope', 'Courses', 'get_colour', 'day_range', 'time_range', 'weekend_enabled', function ($scope, Courses, get_colour, day_range, time_range, weekend_enabled) {
 
     $scope.courses = Courses; // Load global courses into local scope
+    $scope.weekend_enabled = weekend_enabled;
 
     // Adds a course to the list of courses
     $scope.addCourse = function () {

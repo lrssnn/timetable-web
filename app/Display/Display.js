@@ -9,8 +9,9 @@ angular.module('Timetables.Display', ['ngRoute'])
         });
     }])
 
-    .controller('DisplayCtrl', ['$scope', 'Courses', 'day_range', 'time_range', function ($scope, Courses, day_range, time_range) {
+    .controller('DisplayCtrl', ['$scope', 'Courses', 'day_range', 'time_range', 'weekend_enabled', function ($scope, Courses, day_range, time_range, weekend_enabled) {
         $scope.courses = Courses;
+        $scope.weekend_enabled = weekend_enabled;
 
         var hr_from_time = function(time){
             var split = time.split(":");
