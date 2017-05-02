@@ -8,7 +8,8 @@ angular.module('Timetables.Parser', ['ngRoute'])
             controller: 'ParserCtrl'
         });
     }])
-.controller('ParserCtrl', ['$scope', 'Courses', 'day_range', 'time_range', 'get_colour', function ($scope, Courses, day_range, time_range, get_colour) {
+.controller('ParserCtrl', ['$scope', 'Courses', 'time_range', 'get_colour', 
+        function ($scope, Courses, time_range, get_colour) {
 
     $scope.courses = Courses;
 

@@ -6,16 +6,14 @@ angular.module('Timetables', [
     'Timetables.Ingest',
     'Timetables.Display',
     'Timetables.Parser'
-]).config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+]).config(['$locationProvider', '$routeProvider', 
+    function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
     $routeProvider.otherwise({redirectTo: '/Ingest'});
 }]).factory('weekend_enabled', function() {
     return [false];
-}).factory('day_range', ['weekend_enabled', function DaysFactory(weekend_enabled) {
-    if (weekend_enabled[0]) return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    else return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-}]).factory('time_range', function TimeFactory() {
+}).factory('time_range', function TimeFactory() {
     return ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00",
         "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"];
 }).factory('Courses', function CoursesFactory() {
