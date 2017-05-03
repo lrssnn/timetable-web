@@ -9,8 +9,10 @@ angular.module('Timetables.Display', ['ngRoute'])
         });
     }])
 
-    .controller('DisplayCtrl', ['$scope', 'Courses', 'day_range', 'time_range', function ($scope, Courses, day_range, time_range) {
+    .controller('DisplayCtrl', ['$scope', 'Courses', 'time_range', 'weekend_enabled', 
+            function ($scope, Courses, time_range, weekend_enabled) {
         $scope.courses = Courses;
+        $scope.weekend_enabled = weekend_enabled;
 
         var hr_from_time = function(time){
             var split = time.split(":");
@@ -23,9 +25,10 @@ angular.module('Timetables.Display', ['ngRoute'])
             return str + ":00";
         };
 
-        // Pull the course heirarchy which makes sense for data entry out into a flat format which makes sense for display.
-        // Iterating through this function in the template DOES NOT WORK PROPERLY, it must be done at page load then
-        // iterate through this $scope.bundles variable.
+        // Pull the course heirarchy which makes sense for data entry out into a flat format 
+        // which makes sense for display.
+        // Iterating through this function in the template DOES NOT WORK PROPERLY, it must be
+        // done at page load then iterate through this $scope.bundles variable.
         var flat_bundles = function () {
             var res = [];
             for (var i in Courses) {
@@ -77,9 +80,9 @@ angular.module('Timetables.Display', ['ngRoute'])
         $scope.bundles = flat_bundles();
         $scope.cont_bundles = cont_bundles();
         $scope.time_range = time_range;
-        $scope.day_range = day_range;
 
-        // Activate the given bundle (Course, class, timeslot triple) and deactivate all other options in that class
+        // Activate the given bundle (Course, class, timeslot triple) and deactivate all 
+        // other options in that class
         $scope.toggle_active = function (bundle) {
             if($scope.preview_mode) return;
             var clss = bundle.clss, target_opt = bundle.opt; // Unpack Bundle
@@ -89,7 +92,7 @@ angular.module('Timetables.Display', ['ngRoute'])
             }
             for (var i in clss.options) {
                 var opt = clss.options[i];
-                opt.selected = opt == target_opt; // Activate the class if the option is what we are looking for
+                opt.selected = opt == target_opt; // Activate the target class
             }
         };
 
@@ -115,4 +118,13 @@ angular.module('Timetables.Display', ['ngRoute'])
             }
             return true;
         };
+        
+        $scope.day_range = function() {
+            if (weekend_enabled[0]) {
+                return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 
+                    'Saturday', 'Sunday'];
+            } else {
+                return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+            }
+        }
     }]);
