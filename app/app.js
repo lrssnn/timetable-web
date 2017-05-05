@@ -5,12 +5,13 @@ angular.module('Timetables', [
     'ngRoute',
     'Timetables.Ingest',
     'Timetables.Display',
-    'Timetables.Parser'
+    'Timetables.Parser',
+    'Timetables.About'
 ]).config(['$locationProvider', '$routeProvider', 
     function ($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
 
-    $routeProvider.otherwise({redirectTo: '/Ingest'});
+    $routeProvider.otherwise({redirectTo: '/Display'});
 }]).factory('weekend_enabled', function() {
     return [false];
 }).factory('time_range', function TimeFactory() {
