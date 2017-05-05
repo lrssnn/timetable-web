@@ -36,12 +36,14 @@ angular.module('Timetables.Display', ['ngRoute'])
                 for (var j in course.classes) {
                     var clss = course.classes[j];
                     for (var k in clss.options) {
-                        var opt = clss.options[k];
+                        var par_opt = clss.options[k];
                         var bundle = {
                             course: course,
                             clss: clss,
-                            opt: opt
+                            opt: par_opt
                         };
+                        // Sanitize the time
+                        bundle.opt.time = time_from_hr(hr_from_time(bundle.opt.time));
                         res.push(bundle);
                     }
                 }
