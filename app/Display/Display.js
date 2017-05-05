@@ -36,12 +36,14 @@ angular.module('Timetables.Display', ['ngRoute'])
                 for (var j in course.classes) {
                     var clss = course.classes[j];
                     for (var k in clss.options) {
-                        var opt = clss.options[k];
+                        var par_opt = clss.options[k];
                         var bundle = {
                             course: course,
                             clss: clss,
-                            opt: opt
+                            opt: par_opt
                         };
+                        // Sanitize the time
+                        bundle.opt.time = time_from_hr(hr_from_time(bundle.opt.time));
                         res.push(bundle);
                     }
                 }
@@ -96,27 +98,8 @@ angular.module('Timetables.Display', ['ngRoute'])
             }
         };
 
-        $scope.selections_complete = function() {
-	    if(Courses.length == 0) {
-	        return false;
-            }
-            for(var i in Courses){
-                var course = Courses[i];
-                for(var j in course.classes){
-                    var clss = course.classes[j];
-                    var satisfied = false;
-                    for(var k in clss.options){
-                        var opt = clss.options[k];
-                        if(opt.selected){
-                            satisfied = true;
-                        }
-                    }
-                    if(!satisfied){
-                        return false;
-                    }
-                }
-            }
-            return true;
+        $scope.no_courses = function() {
+            return $scope.bundles.length == 0;
         };
         
         $scope.day_range = function() {
