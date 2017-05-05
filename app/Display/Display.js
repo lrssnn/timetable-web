@@ -98,24 +98,8 @@ angular.module('Timetables.Display', ['ngRoute'])
             }
         };
 
-        $scope.selections_complete = function() {
-            for(var i in Courses){
-                var course = Courses[i];
-                for(var j in course.classes){
-                    var clss = course.classes[j];
-                    var satisfied = false;
-                    for(var k in clss.options){
-                        var opt = clss.options[k];
-                        if(opt.selected){
-                            satisfied = true;
-                        }
-                    }
-                    if(!satisfied){
-                        return false;
-                    }
-                }
-            }
-            return true;
+        $scope.no_courses = function() {
+            return $scope.bundles.length == 0;
         };
         
         $scope.day_range = function() {
